@@ -12,8 +12,8 @@
       "custom_domain": true
     },
     {
-      "pattern": "www.19720816.xyz",
-      "custom_domain": true
+      "pattern": "www.19720816.xyz/*",
+      "zone_name": "19720816.xyz"
     }
   ],
   "assets": {

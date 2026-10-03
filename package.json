@@ -15,6 +15,9 @@
     "format": "prettier -w .",
     "format:check": "prettier -c .",
     "gen:manifest": "node scripts/generate-manifest.js",
+    "cf:build": "opennextjs-cloudflare build",
+    "cf:preview": "opennextjs-cloudflare build && wrangler dev",
+    "cf:deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
     "postbuild": "echo 'Build completed - sitemap generation disabled'",
     "prepare": "husky install"
   },
@@ -38,7 +41,7 @@
     "hls.js": "^1.6.10",
     "lucide-react": "^0.438.0",
     "media-icons": "^1.1.5",
-    "next": "^14.2.23",
+    "next": "^14.2.35",
     "next-pwa": "^5.6.0",
     "next-themes": "^0.4.6",
     "react": "^18.2.0",
@@ -53,6 +56,7 @@
   "devDependencies": {
     "@commitlint/cli": "^16.3.0",
     "@commitlint/config-conventional": "^16.2.4",
+    "@opennextjs/cloudflare": "1.15.1",
     "@svgr/webpack": "^8.1.0",
     "@tailwindcss/forms": "^0.5.10",
     "@testing-library/jest-dom": "^5.17.0",
@@ -80,7 +84,8 @@
     "prettier-plugin-tailwindcss": "^0.5.0",
     "tailwindcss": "^3.4.17",
     "typescript": "^4.9.5",
-    "webpack-obfuscator": "^3.5.1"
+    "webpack-obfuscator": "^3.5.1",
+    "wrangler": "4.59.2"
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": [
