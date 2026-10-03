@@ -4,16 +4,17 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getConfig } from '@/lib/config';
 import { db } from '@/lib/db';
 
-export const runtime = 'edge';
+export const runtime = 'nodejs';
 
 // 读取存储类型环境变量，默认 localstorage
 const STORAGE_TYPE =
   (process.env.NEXT_PUBLIC_STORAGE_TYPE as
     | 'localstorage'
     | 'redis'
-    | 'd1'
     | 'upstash'
+    | 'kvrocks'
     | undefined) || 'localstorage';
+const LOCAL_STORAGE_USERNAME = 'local';
 
 // 生成签名
 async function generateSignature(
@@ -104,7 +105,7 @@ export async function POST(req: NextRequest) {
       // 验证成功，设置认证cookie
       const response = NextResponse.json({ ok: true });
       const cookieValue = await generateAuthCookie(
-        undefined,
+        LOCAL_STORAGE_USERNAME,
         password,
         'user',
         true

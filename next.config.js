@@ -1,13 +1,18 @@
 /** @type {import('next').NextConfig} */
 /* eslint-disable @typescript-eslint/no-var-requires */
+
 const nextConfig = {
-  output: 'standalone',
+  output: process.env.DOCKER_ENV === 'true' ? 'standalone' : undefined,
   eslint: {
     dirs: ['src'],
   },
 
   reactStrictMode: false,
-  swcMinify: true,
+  swcMinify: false,
+
+  experimental: {
+    instrumentationHook: process.env.NODE_ENV === 'production',
+  },
 
   // Uncoment to add domain whitelist
   images: {
