@@ -14,6 +14,7 @@ const STORAGE_TYPE =
     | 'upstash'
     | 'kvrocks'
     | undefined) || 'localstorage';
+const LOCAL_STORAGE_USERNAME = 'local';
 
 // 生成签名
 async function generateSignature(
@@ -104,7 +105,7 @@ export async function POST(req: NextRequest) {
       // 验证成功，设置认证cookie
       const response = NextResponse.json({ ok: true });
       const cookieValue = await generateAuthCookie(
-        undefined,
+        LOCAL_STORAGE_USERNAME,
         password,
         'user',
         true
